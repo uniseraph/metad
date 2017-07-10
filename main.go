@@ -1,4 +1,4 @@
-package main
+package metad
 
 import (
 	"fmt"
@@ -11,6 +11,10 @@ import (
 	"syscall"
 	"time"
 	"os/signal"
+
+
+	"github.com/zanecloud/metad/daemon"
+	"github.com/zanecloud/metad/opts"
 )
 
 const (
@@ -43,15 +47,10 @@ var (
 	BuildTime string
 )
 
-type metadOptions struct {
-	version  bool
-	loglevel string
-	address  string
-	consul string
-}
+
 
 func newMetadCommand() *cobra.Command {
-	var opts metadOptions
+	var opts opts.MetadOptions
 
 	cmd := &cobra.Command{
 		Use:           "metad [flags] address",
@@ -59,25 +58,25 @@ func newMetadCommand() *cobra.Command {
 		SilenceErrors: true,
 		SilenceUsage:  true,
 		Run: func(cmd *cobra.Command, args []string) {
-			if opts.version {
+			if opts.Version {
 				showVersion()
 				return
 			}
-			if err := setLogLevel(opts.loglevel); err != nil {
+			if err := setLogLevel(opts.Loglevel); err != nil {
 				logrus.Fatal(err)
 			}
 			if len(args) != 1 {
-				logrus.Fatal("watchdog [FLAGS] ADDRESS")
+				logrus.Fatal("metad [FLAGS] ADDRESS")
 			}
-			runMetad(opts, args[0])
+			daemon.RunMetad(opts, args[0])
 		},
 	}
 
 	flags := cmd.Flags()
-	flags.BoolVarP(&opts.version, "version", "v", false, "Print version information and quit")
-	flags.StringVar(&opts.loglevel, "log-level", "info", "Set log level (debug, info, error, fatal)")
-	flags.StringVarP(&opts.address, "address", "l", "localhost:6400", "metad listen adress")
-	flags.StringVarP(&opts.consul, "consul","c","localhost:8600","consul agent address" )
+	flags.BoolVarP(&opts.Version, "version", "v", false, "Print version information and quit")
+	flags.StringVar(&opts.Loglevel, "log-level", "info", "Set log level (debug, info, error, fatal)")
+	//flags.StringVarP(&opts.address, "address", "l", "localhost:6400", "metad listen adress")
+	flags.StringVarP(&opts.Consul, "consul","c","localhost:8600","consul agent address" )
 	return cmd
 }
 
@@ -90,9 +89,6 @@ func setLogLevel(level string) error {
 	return nil
 }
 
-func runMetad(opts metadOptions, address string) {
-
-}
 
 func signalTrap(handle func(os.Signal)) {
 	signalC := make(chan os.Signal, 1)

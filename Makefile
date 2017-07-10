@@ -2,7 +2,7 @@
 
 SHELL = /bin/bash
 
-GOLANG = golang:1.7.5
+GOLANG = golang:1.8.1
 
 PROJECT = github.com/zanecloud/metatd
 TARGET  = metad
