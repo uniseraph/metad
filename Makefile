@@ -4,7 +4,7 @@ SHELL = /bin/bash
 
 GOLANG = golang:1.8.3
 
-PROJECT = github.com/zanecloud/metatd
+PROJECT = github.com/zanecloud/metad
 TARGET  = metad
 VERSION = $(shell cat VERSION)
 GITCOMMIT = $(shell git log -1 --pretty=format:%h)
@@ -22,9 +22,10 @@ local:
 	mkdir -p bundles/${VERSION}/binary
 	CGO_ENABLED=0 go build -v -ldflags "-X main.Version=${VERSION} -X main.GitCommit=${GITCOMMIT} -X main.BuildTime=${BUILD_TIME}" -o bundles/${VERSION}/binary/metad
 
-image:
+image:build
 	docker build -t ${IMAGE_NAME} .
 	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}-${GITCOMMIT}
+	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}
 
 run:local
 	chmod +x bundles/${VERSION}/binary/metad

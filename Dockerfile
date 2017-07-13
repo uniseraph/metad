@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
 ENV VERSION 0.1.0
-ADD ./bundles/${VERSION}/binary/tunneld /usr/bin
+ADD ./bundles/${VERSION}/binary/metad /usr/bin
 
-ENTRYPOINT ["/usr/bin/tunneld"]
+ENTRYPOINT ["/usr/bin/metad"]
