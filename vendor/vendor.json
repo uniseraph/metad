@@ -3,10 +3,16 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "jwx/056iIPQnBIOoQ+AMsvPEM4g=",
+			"checksumSHA1": "Y70OcOH543SdNK+nPbzDBI6Tas8=",
 			"path": "github.com/Sirupsen/logrus",
-			"revision": "3d84af1ae04512e1bd4fe2b23fc6975db255f79c",
-			"revisionTime": "2017-07-09T17:36:25Z"
+			"revision": "1fe8319fcaef78ef9220c9b05178df0f871dbc5d",
+			"revisionTime": "2017-07-12T16:35:25Z"
+		},
+		{
+			"checksumSHA1": "bN5VICCd1hnDbxYZqXdJquzhf7o=",
+			"path": "github.com/codegangsta/cli",
+			"revision": "4b90d79a682b4bf685762c7452db20f2a676ecb2",
+			"revisionTime": "2017-07-06T19:46:25Z"
 		},
 		{
 			"checksumSHA1": "g/V4qrXjUGG9B+e3hB+4NAYJ5Gs=",
@@ -45,28 +51,10 @@
 			"revisionTime": "2017-07-08T01:19:18Z"
 		},
 		{
-			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
-			"path": "github.com/inconshreveable/mousetrap",
-			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
-			"revisionTime": "2014-10-17T20:07:13Z"
-		},
-		{
 			"checksumSHA1": "V/quM7+em2ByJbWBLOsEwnY3j/Q=",
 			"path": "github.com/mitchellh/go-homedir",
 			"revision": "b8bc1bf767474819792c23f32d8286a45736f1c6",
 			"revisionTime": "2016-12-03T19:45:07Z"
-		},
-		{
-			"checksumSHA1": "JCTGEgZstzmSj//kDP9ZI/LoHZ4=",
-			"path": "github.com/spf13/cobra",
-			"revision": "8c6fa02d2225de0f9bdcb7ca912556f68d172d8c",
-			"revisionTime": "2017-06-29T10:52:34Z"
-		},
-		{
-			"checksumSHA1": "STxYqRb4gnlSr3mRpT+Igfdz/kM=",
-			"path": "github.com/spf13/pflag",
-			"revision": "e57e3eeb33f795204c1ca35f56c44f83227c6e66",
-			"revisionTime": "2017-05-08T18:43:26Z"
 		},
 		{
 			"path": "golang.org/x/sys/unix",

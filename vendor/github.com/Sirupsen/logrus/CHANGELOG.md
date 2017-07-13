@@ -1,3 +1,11 @@
+# 1.0.2
+
+* bug: quote non-string values in text formatter (#583)
+
+# 1.0.1
+
+* bug: fix escaping in text formatter (#575)
+
 # 1.0.0
 
 * Officially changed name to lower-case

@@ -2,7 +2,7 @@
 
 SHELL = /bin/bash
 
-GOLANG = golang:1.8.1
+GOLANG = golang:1.8.3
 
 PROJECT = github.com/zanecloud/metatd
 TARGET  = metad
@@ -18,13 +18,17 @@ build:
 binary: build
 
 local:
-	@rm -rf bundles/${VERSION}
+	rm -rf bundles/${VERSION}
 	mkdir -p bundles/${VERSION}/binary
-	CGO_ENABLED=0 go build -v -ldflags "-X main.Version=${VERSION} -X main.GitCommit=${GITCOMMIT} -X main.BuildTime=${BUILD_TIME}" -o bundles/${VERSION}/binary/${TARGET}
+	CGO_ENABLED=0 go build -v -ldflags "-X main.Version=${VERSION} -X main.GitCommit=${GITCOMMIT} -X main.BuildTime=${BUILD_TIME}" -o bundles/${VERSION}/binary/metad
 
 image:
 	docker build -t ${IMAGE_NAME} .
 	docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}-${GITCOMMIT}
+
+run:local
+	chmod +x bundles/${VERSION}/binary/metad
+	./bundles/${VERSION}/binary/metad  --log-level debug start --consul-addr 127.0.0.1:8500 --addr 127.0.0.1:6400
 
 publish:
 	docker tag ${IMAGE_NAME}:${VERSION}-${GITCOMMIT} ${IMAGE_NAME}:${VERSION}
